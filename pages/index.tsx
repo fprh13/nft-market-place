@@ -1,40 +1,21 @@
-import NextLink from 'next/link'
-import type { NextPage } from 'next'
-import {
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import React from 'react';
+import { Container, Heading, Text } from '@chakra-ui/react';
+import NFTGrid from '../components/NFTGrid';
+import { NFT_COLLECTION_ADDRESS } from '../const/addresses';
+import { useContract, useNFTs } from '@thirdweb-dev/react';
 
-const Home: NextPage = () => {
+export default function Buy() {
+  const { contract } = useContract(NFT_COLLECTION_ADDRESS);
+  const { data, isLoading } = useNFTs(contract);
+
   return (
-    <Container
-      maxW={'1200px'}
-      backgroundImage="url('metaverse.jpg')"
-      backgroundSize="1200px"
-      backgroundPosition="center"
-      backgroundRepeat="no-repeat"
-    >
-      <Flex h={'80vh'} alignItems={'center'} justifyContent={'center'}>
-        <Stack spacing={10} align={'center'}>
-          <Heading>Marketplace</Heading>
-          <Text fontSize={'xl'} align={'center'}>
-            Gateway to the Ethereum blockchain, NFT, Coin <br />
-            with Thirdweb, Ethers, Next.js, ChakraUI, Typescript
-          </Text>
-          <Button as={NextLink} href="/buy" bg="blue.200">
-            <Text fontSize={'2xl'} fontWeight={'bold'} p={4}>
-              Shop NFTs
-            </Text>
-          </Button>
-        </Stack>
-      </Flex>
+    <Container maxW={'1200px'} p={5}>
+      <Heading textAlign={'center'}>Created by this site.</Heading>
+      <Text as="b">
+        <br></br>
+        Contract-address<br></br>0xdAF701948f797b669Edf65711541405fD8308bd5
+      </Text>
+      <NFTGrid isLoading={isLoading} data={data} emptyText={'No NFTs found'} />
     </Container>
-  )
+  );
 }
-
-export default Home

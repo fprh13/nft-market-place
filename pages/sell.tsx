@@ -8,36 +8,36 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 import {
   ThirdwebNftMedia,
   useAddress,
   useContract,
   useOwnedNFTs,
-} from '@thirdweb-dev/react'
-import React, { useState } from 'react'
-import { NFT_COLLECTION_ADDRESS } from '../const/addresses'
-import type { NFT as NFTType } from '@thirdweb-dev/sdk'
-import NFTGrid from '../components/NFTGrid'
-import SaleInfo from '../components/SaleInfo'
+} from '@thirdweb-dev/react';
+import React, { useState } from 'react';
+import { NFT_COLLECTION_ADDRESS } from '../const/addresses';
+import type { NFT as NFTType } from '@thirdweb-dev/sdk';
+import NFTGrid from '../components/NFTGrid';
+import SaleInfo from '../components/SaleInfo';
 
 export default function Sell() {
-  const { contract } = useContract(NFT_COLLECTION_ADDRESS)
-  const address = useAddress()
-  const { data, isLoading } = useOwnedNFTs(contract, address)
+  const { contract } = useContract(NFT_COLLECTION_ADDRESS);
+  const address = useAddress();
+  const { data, isLoading } = useOwnedNFTs(contract, address);
 
-  const [selectedNFT, setSelectedNFT] = useState<NFTType>()
+  const [selectedNFT, setSelectedNFT] = useState<NFTType>();
 
   return (
-    <Container maxW={'1200px'} p={5} bg="blue.100">
-      <Heading>Sell NFTs</Heading>
+    <Container maxW={'1200px'} p={5}>
+      <Heading textAlign={'center'}>Sell NFT</Heading>
       <Text>Select which NFT to sell below.</Text>
       {!selectedNFT ? (
         <NFTGrid
           data={data}
           isLoading={isLoading}
           overrideOnclickBehavior={(nft) => {
-            setSelectedNFT(nft)
+            setSelectedNFT(nft);
           }}
           emptyText={"You don't own any NFTs yet from this collection."}
         />
@@ -54,7 +54,7 @@ export default function Sell() {
                 <Flex justifyContent={'right'}>
                   <Button
                     onClick={() => {
-                      setSelectedNFT(undefined)
+                      setSelectedNFT(undefined);
                     }}
                   >
                     X
@@ -68,5 +68,5 @@ export default function Sell() {
         </Flex>
       )}
     </Container>
-  )
+  );
 }

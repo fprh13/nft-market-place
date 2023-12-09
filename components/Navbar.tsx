@@ -1,47 +1,57 @@
-import { Avatar, Box, Flex, Heading, Link, Text } from '@chakra-ui/react'
-import { ConnectWallet, useAddress } from '@thirdweb-dev/react'
-import NextLink from 'next/link'
+import { Avatar, Box, Flex, Heading, Link, Text } from '@chakra-ui/react';
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
+import NextLink from 'next/link';
 
 export function Navbar() {
-  const address = useAddress()
+  const address = useAddress();
 
   return (
-    <Box maxW={'1200px'} m={'auto'} py={'10px'} px={'40px'} bg="blue.500">
+    <Box m={'auto'} py={'8px'} px={'40px'} bg="gray.100">
       <Flex justifyContent={'space-between'} alignItems={'center'}>
         <Link as={NextLink} href="/">
-          <Heading>NFT World</Heading>
+          Logo
         </Link>
-        <Flex direction={'row'}>
-          <Link as={NextLink} href="/buy" mx={2.5}>
-            <Text fontSize="2xl" as="b">
-              Buy
-            </Text>
+
+        <Flex
+          direction={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
+          <Flex dir={'row'} alignItems={'center'}>
+            <ConnectWallet />
+            {address && (
+              <Link as={NextLink} href={`/profile/${address}`}>
+                {/* <Avatar src="https://bit.ly/broken-link" ml={'20px'} /> */}
+              </Link>
+            )}
+          </Flex>
+
+          <Link as={NextLink} href="/" mx={2.5}>
+            <Text color={'grey'}>Buy</Text>
           </Link>
           <Link as={NextLink} href="/sell" mx={2.5}>
-            <Text fontSize="2xl" as="b">
-              Sell
-            </Text>
+            <Text color={'grey'}>Sell</Text>
           </Link>
-          <Link as={NextLink} href="/tokendrop" mx={2.5}>
-            <Text fontSize="2xl" as="b">
-              Token Drop
-            </Text>
-          </Link>
+          {/* <Link as={NextLink} href="/tokendrop" mx={2.5}>
+            <Text color={'grey'}>Token Drop</Text>
+          </Link> */}
           <Link as={NextLink} href="/info" mx={2.5}>
-            <Text fontSize="2xl" as="b">
-              Info
-            </Text>
+            <Text color={'grey'}>Info</Text>
           </Link>
-        </Flex>
-        <Flex dir={'row'} alignItems={'center'}>
-          <ConnectWallet />
-          {address && (
-            <Link as={NextLink} href={`/profile/${address}`}>
-              <Avatar src="https://bit.ly/broken-link" ml={'20px'} />
-            </Link>
-          )}
+
+          <Link href="/" mx={2.5}>
+            <Text color={'blue'}>gallery</Text>
+          </Link>
+
+          <Link href="/" mx={2.5}>
+            <Text color={'grey'}>community</Text>
+          </Link>
+
+          <Link href="/" mx={2.5}>
+            <Text color={'grey'}>about</Text>
+          </Link>
         </Flex>
       </Flex>
     </Box>
-  )
+  );
 }
