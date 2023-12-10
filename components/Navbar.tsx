@@ -9,7 +9,12 @@ export function Navbar() {
     <Box m={'auto'} py={'8px'} px={'40px'} bg="gray.100">
       <Flex justifyContent={'space-between'} alignItems={'center'}>
         <Link as={NextLink} href="/">
-          Logo
+          <img
+            src="/logo.png"
+            srcSet="/logo.png"
+            style={{ width: '50px', height: '50px' }}
+            loading="lazy"
+          ></img>
         </Link>
 
         <Flex
@@ -39,16 +44,8 @@ export function Navbar() {
             <Text color={'grey'}>Info</Text>
           </Link>
 
-          <Link href="/" mx={2.5}>
-            <Text color={'blue'}>gallery</Text>
-          </Link>
-
-          <Link href="/" mx={2.5}>
-            <Text color={'grey'}>community</Text>
-          </Link>
-
-          <Link href="/" mx={2.5}>
-            <Text color={'grey'}>about</Text>
+          <Link href="https://nft-front-ten.vercel.app" mx={2.5}>
+            <Text color={'blue'}>gallery&community</Text>
           </Link>
         </Flex>
       </Flex>
