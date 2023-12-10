@@ -19,7 +19,7 @@ export default function Info() {
       <Heading> Team </Heading>
       <Text>
         <br />
-        Developed by the Jonathan team.
+        Developed by the Jonichan team.
         <br />
         name : 조영무
         <br />
@@ -57,6 +57,17 @@ export default function Info() {
           https://github.com/ohjc0928
         </Link>
         <br />
+      </Text>
+      <br />
+      <Heading> Demo </Heading>
+      <Text>
+        <br />
+        YouTube for Demo
+        <br />
+        <Link href={'https://youtu.be/GN_PcZ3IEEY?si=Hujhgt2OcTnAmWUi'}>
+          <br />
+          https://youtu.be/GN_PcZ3IEEY?si=Hujhgt2OcTnAmWUi
+        </Link>
       </Text>
     </Container>
   );
